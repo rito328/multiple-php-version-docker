@@ -73,7 +73,7 @@ function help () {
       destroy : Delete containers and images.
       conn    : Connect to app container.
            args : PHP version number of the container to connect.
-                  exp) PHP7.4 => 74
+                  exp.) PHP7.4 => 74
       help    : Display help.
   +------------------------------------------------------------------------+
   "
