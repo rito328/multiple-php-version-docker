@@ -19,13 +19,29 @@ function start () {
         if [ "$CONTAINER_EXISTS" = '' ]; then
             SCRIPT_DIR=$(cd $(dirname $0); pwd)
 
-            docker run -v $SCRIPT_DIR/src:/var/www/html -p 80${VERSION_NUMBER}:80 -d --name ${CONTAINER_NAME} php:${VERSION}-apache
+            ERROR_LOG_DIR=${SCRIPT_DIR}/logs/${VERSION}
+            ERROR_LOG_FILE=${ERROR_LOG_DIR}/php_error.log
+
+            if [[ -f $ERROR_LOG_FILE ]]; then
+              rm -f $ERROR_LOG_FILE
+            fi
+
+            mkdir $ERROR_LOG_DIR
+            touch $ERROR_LOG_FILE
+
+            docker run \
+            -v $SCRIPT_DIR/src:/var/www/html \
+            -v $SCRIPT_DIR/settings/php.ini:/usr/local/etc/php/php.ini \
+            -v $ERROR_LOG_FILE:/var/log/php_error.log \
+            -p 80${VERSION_NUMBER}:80 \
+            -d \
+            --name ${CONTAINER_NAME} php:${VERSION}-apache
 
             echo "Started PHP ${VERSION} Container"
 
             START_URLS+=("http://localhost:80${VERSION_NUMBER}")
         else
-            echo '${CONTAINER_NAME} is already started.'
+            echo ${CONTAINER_NAME} ' is already started.'
         fi
     done
 
