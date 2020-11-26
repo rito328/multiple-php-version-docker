@@ -7,7 +7,7 @@ Docker による PHP 実行環境を複数の PHP バージョンで構築する
 ## Getting started
 ### 1. 起動したい PHP のバージョンをスペース区切りで入力
 ```bash:order.sh
-PHP_VERSIONS=(7.4 7.3 7.2 7.1 7.0 5.6)
+PHP_VERSIONS=(8.0 7.4 7.3 7.2 7.1 7.0 5.6)
 ```
 - 入力するバージョンは 1 つだけでも動作します。
 ### 2. 起動
@@ -21,6 +21,7 @@ sh order.sh start
 ```bash
 +-----------------------------------+
       PHP Container is Started.
+  [PHP 8.0]  http://localhost:8080
   [PHP 7.4]  http://localhost:8074
   [PHP 7.3]  http://localhost:8073
   [PHP 7.2]  http://localhost:8072

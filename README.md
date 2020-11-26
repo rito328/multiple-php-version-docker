@@ -7,7 +7,7 @@ This is useful when you want to check one PHP executable with multiple PHP versi
 ## Getting started
 ### 1. Enter the PHP version you want to launch, separated by spaces
 ```bash:order.sh
-PHP_VERSIONS=(7.4 7.3 7.2 7.1 7.0 5.6)
+PHP_VERSIONS=(8.0 7.4 7.3 7.2 7.1 7.0 5.6)
 ```
 - Only one version should work.
 
@@ -22,6 +22,7 @@ sh order.sh start
 ```bash
 +-----------------------------------+
       PHP Container is Started.
+  [PHP 8.0]  http://localhost:8080
   [PHP 7.4]  http://localhost:8074
   [PHP 7.3]  http://localhost:8073
   [PHP 7.2]  http://localhost:8072
