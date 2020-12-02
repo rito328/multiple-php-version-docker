@@ -10,12 +10,6 @@ function start () {
     START_URLS=()
 
     for VERSION in ${PHP_VERSIONS[@]}; do
-            if [ $VERSION = 8.0 ]; then
-                IMAGE_VERSION="$VERSION-rc"
-            else
-                IMAGE_VERSION=$VERSION
-            fi
-
         VERSION_NUMBER=${VERSION/./}
 
         CONTAINER_NAME=php_${VERSION_NUMBER}_web_container
@@ -41,7 +35,7 @@ function start () {
             -v $ERROR_LOG_FILE:/var/log/php_error.log \
             -p 80${VERSION_NUMBER}:80 \
             -d \
-            --name ${CONTAINER_NAME} php:${IMAGE_VERSION}-apache
+            --name ${CONTAINER_NAME} php:${VERSION}-apache
 
             echo "Started PHP ${VERSION} Container"
 
